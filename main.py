@@ -20,11 +20,11 @@ app.add_middleware(
 async def classify_number(number: str):
     # Check if input consists only of alphabetic characters
     if number.isalpha():
-        return {"number": "alphabet", "error": True}
+        return ORJSONResponse(status_code=400, content={"number": "alphabet", "error": True})
 
     # Check if input is a valid number (allows negative numbers)
     if not number.lstrip("-").isdigit():
-        return {"number": "invalid", "error": True}
+        return ORJSONResponse(status_code=400, content={"number": "invalid", "error": True})
 
 
     num = int(number)
